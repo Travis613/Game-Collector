@@ -7,7 +7,7 @@ from django.urls import reverse
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
-    return render(request, "accounts/account.html")
+    return render(request, "personal_collection/account.html")
 
 def login_view(request):
     if request.method == "POST":
@@ -18,14 +18,14 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "accounts/login.html", {
+            return render(request, "personal_collection/login.html", {
                 "message": "invalid credentials"
             })
         
-    return render (request, "accounts/login.html")
+    return render (request, "personal_collection/login.html")
 
 def logout_view(request):
     logout(request)
-    return render(request, "accounts/login.html", {
+    return render(request, "personal_collection/login.html", {
             "message": "logged out."
         })
